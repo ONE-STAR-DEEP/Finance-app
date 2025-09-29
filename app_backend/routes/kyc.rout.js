@@ -17,7 +17,7 @@ router.post("/upload", async (req, res) => {
 });
 
 
-router.put("/upload/:id", async (req, res) => {
+router.put("/update/:id", async (req, res) => {
 
     const {id} = req.params;
 
@@ -28,7 +28,7 @@ router.put("/upload/:id", async (req, res) => {
     }    
 
     try {
-        const updatedProduct = await Product.findByIdAndUpdate(id, data, { new: true});
+        const updatedProduct = await Data.findByIdAndUpdate(id, data, { new: true});
         return res.status(200).json({ success: true, data: updatedData });
     } catch (error) {
         console.log(error);

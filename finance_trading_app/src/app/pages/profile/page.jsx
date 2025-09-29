@@ -1,10 +1,9 @@
 'use client'
 
 import { SoftGridBackground } from "@/components/softBackground"
-import StockCard from "@/components/stock-card";
+import StockCard from "@/components/stock-card-profile";
 import TotalAssets from "@/components/tatal-assets";
 import { Button } from "@/components/ui/button";
-import { set } from "mongoose";
 import Link from "next/link";
 import { useEffect, useState } from "react";
 
@@ -13,6 +12,8 @@ export default function LoginPage() {
   const [currentUser, setCurrentUser] = useState();
   const [name, setName] = useState("");
   const [id, setId] = useState("");
+  const [investment, setInvestment] = useState(0);
+  const [data, setData] = useState({});
 
   useEffect(() => {
     async function fetchMe() {
@@ -27,7 +28,6 @@ export default function LoginPage() {
         }
 
         const user = await res.json();
-        console.log("Logged-in user:", user);
         setCurrentUser(user);
         setName(user.username);
         setId(user._id);
@@ -36,7 +36,6 @@ export default function LoginPage() {
         setCurrentUser(null);
       }
     }
-
     fetchMe();
   }, []);
 
@@ -58,6 +57,21 @@ export default function LoginPage() {
   }
 
   fetchOrders();
+
+  async function fetchData() {
+    try {
+      const res = await fetch(`http://localhost:5000/api/data/${id}`, {
+        method: "GET",
+      });
+      if (!res.ok) throw new Error("Failed to fetch user data");
+
+      const data = await res.json();
+      setData(data.data[0]);
+    } catch (err) {
+      console.error(err);
+    }
+  }
+  fetchData();
 }, [id]);
 
 
@@ -92,7 +106,7 @@ export default function LoginPage() {
             </header>
 
             <section className="mb-8">
-              <TotalAssets amount={100000} deltaPct={2.3} />
+              <TotalAssets amount={100000} deltaPct={2.3} {...data}/>
             </section>
           </div>
 

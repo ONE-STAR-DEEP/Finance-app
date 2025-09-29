@@ -1,6 +1,7 @@
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
+import { Card, CardContent, CardFooter, CardHeader, CardTitle } from "@/components/ui/card"
 
-export default function TotalAssets({ amount = 125430.22, deltaPct = 2.3 }) {
+export default function TotalAssets({ amount = 125430.22, deltaPct = 2.3, balance, bonus  }) {
+  console.log(balance, bonus);
   const up = Number(deltaPct) >= 0
   const formatted = new Intl.NumberFormat("en-US", {
     style: "currency",
@@ -35,6 +36,10 @@ export default function TotalAssets({ amount = 125430.22, deltaPct = 2.3 }) {
           {deltaPct}%
         </span>
       </CardContent>
+      <CardFooter className="pt-0 text-xs text-muted-foreground">
+        <p>Balance:{balance}</p>
+        <p>Bonus:{bonus}</p>
+      </CardFooter>
     </Card>
   )
 }

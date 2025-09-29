@@ -14,8 +14,9 @@ router.get("/", async (req, res) => {
 })
 
 router.get("/:id", async (req, res) => {
+    const { id } = req.params;
     try {
-        const products = await Product.find({});
+        const products = await Product.findById(id);
         res.status(200).json({ success: true, data: products });
     } catch (error) {
         console.log(error);

@@ -12,7 +12,6 @@ import { useState } from "react"
 export default function StockCard({ _id, ticker, name, price, change, userid }) {
   const [Quantity, setQuantity] = useState(0);
 
-
   const handelPurchase = async () => {
     try {
       console.log(_id, userid);
@@ -53,7 +52,7 @@ export default function StockCard({ _id, ticker, name, price, change, userid }) 
         <p className="text-2xl font-semibold">₹{price}</p>
         <span
           className={
-            (positive ? "text-primary bg-primary/10" : "text-destructive bg-destructive/10") +
+            (positive ? "text-primary bg-green-500/10" : "text-destructive bg-destructive/10") +
             " inline-flex items-center gap-1 rounded-full px-2 py-0.5 text-xs font-medium"
           }
           aria-label={positive ? "Price up" : "Price down"}

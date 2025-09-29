@@ -7,6 +7,7 @@ import authRoutes from './routes/auth.route.js';
 import kycRoutes from './routes/kyc.rout.js';
 import productRoutes from './routes/products.routes.js';
 import buyRoutes from './routes/buy.routes.js';
+import dataRoutes from './routes/data.route.js';
 
 dotenv.config();
 
@@ -23,6 +24,8 @@ app.use("/api/products", productRoutes)
 app.use('/api/auth', authRoutes);
 
 app.use('/api/kyc', kycRoutes);
+
+app.use('/api/data', dataRoutes);
 
 app.use('/api/stocks', productRoutes);
 

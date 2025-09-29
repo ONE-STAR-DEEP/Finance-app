@@ -15,7 +15,7 @@ export default function MyComponent() {
             try {
                 const res = await fetch("http://localhost:5000/api/auth/me", {
                     method: "GET",
-                    credentials: "include", // <-- must include cookies
+                    credentials: "include", 
                 });
 
                 if (!res.ok) {
@@ -24,7 +24,7 @@ export default function MyComponent() {
 
                 const user = await res.json();
                 console.log("Logged-in user:", user);
-                setCurrentUser(user); // store user in state
+                setCurrentUser(user); 
                 setName(user.username);
             } catch (err) {
                 console.error(err);
